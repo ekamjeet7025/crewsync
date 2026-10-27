@@ -14,6 +14,7 @@ app.set('trust proxy', 1);
 app.use(securityHeaders);
 app.use(express.json({ limit: '32kb' }));
 app.use(cookieParser());
+app.use((req, res, next) => { req.body ||= {}; next(); });
 app.use('/api', (req, res, next) => { res.set('Cache-Control', 'no-store'); if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method) && req.get('X-CrewSync') !== '1') return res.status(403).json({ error: 'Missing request protection header.' }); next(); });
 app.get('/api/health', async (req, res) => { await connect(); res.json({ status: 'ok', database: 'connected' }); });
 app.use('/api', async (req, res, next) => { await connect(); next(); });
@@ -92,4 +93,3 @@ app.use((error, req, res, next) => {
   res.status(status).json({ error: status >= 500 ? 'We could not complete this request. Please try again.' : error.message });
 });
 export default app;
-

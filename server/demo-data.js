@@ -2,7 +2,7 @@ import bcrypt from 'bcrypt';
 import { User, Event, Shift, Audit } from './models.js';
 const id = n => n.toString(16).padStart(24, '0');
 export async function seedDemo() {
-  if (await Event.exists({ _id: id(101) })) return;
+  if (await Audit.exists({ _id: id(303) })) return;
   const password = process.env.SEED_PASSWORD;
   if (!password || password.length < 10) throw new Error('Set SEED_PASSWORD to at least 10 characters');
   const passwordHash = await bcrypt.hash(password, 12);
@@ -25,7 +25,7 @@ export async function seedDemo() {
     [103,'Campus Sports Day','A day of friendly competition and team spirit. Join the crew supporting athletes, spectators, and the games.','Sports ground','Sports',74,82],
     [104,'Crew Orientation','Our live practice session for volunteer check-in and attendance. This is sample data for exploring CrewSync.','Student activity centre','Campus',-1,3]
   ];
-  // Create the marker event last so a partial setup can be retried safely.
+  // Idempotent upserts preserve existing records; final audit row marks a completed seed.
   for (const [n,title,description,location,category,start,end] of [...eventData].reverse()) {
     await Event.updateOne({ _id: id(n) }, { $setOnInsert: { title,description,location,category,startsAt:at(start),endsAt:at(end),owner:id(1),status:'published' } }, { upsert:true });
   }
@@ -47,4 +47,3 @@ export async function seedDemo() {
   await Audit.updateOne({_id:id(302)},{$setOnInsert:{event:id(101),actor:id(2),actorName:'Aarav Sharma',message:'joined Welcome & registration'}},{upsert:true});
   await Audit.updateOne({_id:id(303)},{$setOnInsert:{event:id(101),actor:id(3),actorName:'Riya Kapoor',message:'requested cover for Guest experience'}},{upsert:true});
 }
-
