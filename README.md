@@ -136,6 +136,8 @@ Integration tests use an isolated MongoDB replica set. They cover capacity races
 
 **Source code:** https://github.com/ekamjeet7025/crewsync
 
+**video walkthrough** https://drive.google.com/drive/folders/1R6BzFzoZplxSZX7fv5hmlvK4SbvLaHCB?usp=sharing
+
 To deploy your own instance:
 
 1. Import the repository into Vercel with the repository root as the root directory.
