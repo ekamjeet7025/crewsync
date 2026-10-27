@@ -17,19 +17,15 @@
     "cookie-parser": "^1.4.7",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.2.1",
-    "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.10.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "lucide-react": "^0.468.0"
+    "react-dom": "^19.2.8"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^6.1.1",
     "vite": "^8.3.0",
-    "mongodb-memory-server": "^11.3.0",
-    "@playwright/test": "^1.56.0"
+    "mongodb-memory-server": "^11.3.0"
   },
   "engines": {
     "node": ">=22.12"

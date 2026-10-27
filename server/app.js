@@ -1,8 +1,7 @@
 import 'dotenv/config';
 import express from 'express';
 import cookieParser from 'cookie-parser';
-import helmet from 'helmet';
-import { rateLimit } from 'express-rate-limit';
+import { securityHeaders, authLimit } from './security.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
@@ -12,7 +11,7 @@ import { AppError, ensure, text, date, objectId, own, log, changeAssignment } fr
 const app = express();
 app.disable('x-powered-by');
 app.set('trust proxy', 1);
-app.use(helmet({ contentSecurityPolicy: { directives: { defaultSrc: ["'self'"], scriptSrc: ["'self'"], styleSrc: ["'self'", "'unsafe-inline'"], imgSrc: ["'self'", 'data:'], connectSrc: ["'self'"], fontSrc: ["'self'"], objectSrc: ["'none'"], upgradeInsecureRequests: process.env.NODE_ENV === 'production' ? [] : null } } }));
+app.use(securityHeaders);
 app.use(express.json({ limit: '32kb' }));
 app.use(cookieParser());
 app.use('/api', (req, res, next) => { res.set('Cache-Control', 'no-store'); if (!['GET', 'HEAD', 'OPTIONS'].includes(req.method) && req.get('X-CrewSync') !== '1') return res.status(403).json({ error: 'Missing request protection header.' }); next(); });
@@ -21,7 +20,6 @@ app.use('/api', async (req, res, next) => { await connect(); next(); });
 const cookieOptions = { httpOnly: true, sameSite: 'lax', secure: process.env.NODE_ENV === 'production', path: '/' };
 function publicUser(u) { return { _id: u._id, name: u.name, email: u.email, role: u.role }; }
 function signIn(res, user) { ensure(process.env.JWT_SECRET?.length >= 32, 503, 'Authentication is not configured.'); res.cookie('crewsync_session', jwt.sign({ sub: String(user._id) }, process.env.JWT_SECRET, { expiresIn: '12h', issuer: 'crewsync', audience: 'crewsync-web' }), { ...cookieOptions, maxAge: 43200000 }); res.json({ user: publicUser(user) }); }
-const authLimit = rateLimit({ windowMs: 15 * 60 * 1000, limit: 50, standardHeaders: 'draft-8', legacyHeaders: false, message: { error: 'Too many sign-in attempts. Please try again in 15 minutes.' } });
 app.post('/api/auth/register', authLimit, async (req, res) => {
   const name = text(req.body.name, 'Name', 60); const email = text(req.body.email, 'Email', 160).toLowerCase(); const password = text(req.body.password, 'Password', 72);
   ensure(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email), 400, 'Enter a valid email address.'); ensure(password.length >= 10, 400, 'Use a password with at least 10 characters.');
