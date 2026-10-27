@@ -159,4 +159,4 @@ For submission, use the live application and repository links above.
 
 ## Acknowledgements
 
-CrewSync uses the open-source dependencies listed in `package.json`. AI assistance was used during implementation and documentation.
+CrewSync uses the open-source dependencies listed in `package.json`. 
