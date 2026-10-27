@@ -46,21 +46,6 @@ These are intentionally public **synthetic demonstration accounts**, not persona
 
 Demo events are dated relative to the first seed. The orientation shift starts immediately so attendance can be demonstrated. Seeding is non-destructive and does not reset existing events.
 
-## Run against MongoDB Atlas
-A replica set is required for transactions. Atlas supports this; a standalone local mongod does not.
-
-1. Copy `.env.example` to `.env`.
-2. Set the MongoDB URI, a unique database name, and a random JWT secret.
-3. Optionally set `SEED_PASSWORD` and run `npm run seed`.
-4. Run:
-   ```powershell
-   npm run build
-   npm start
-   ```
-5. Open http://localhost:3100.
-
-For frontend development use two terminals: `npm run dev` and `npm run client`. Vite runs at http://127.0.0.1:5174 and proxies API requests to port 3100.
-
 ## Environment variables
 | Variable | Purpose |
 |---|---|
