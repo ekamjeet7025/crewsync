@@ -6,4 +6,3 @@ test('dates must be valid string timestamps',()=>{assert.equal(date('2030-01-01T
 test('only 24-character hexadecimal resource identifiers are accepted',()=>{assert.equal(objectId('0123456789abcdef01234567'),'0123456789abcdef01234567');for(const value of ['not-id','',undefined,{$ne:null}])assert.throws(()=>objectId(value),AppError)});
 test('resource ownership distinguishes missing events from forbidden access',()=>{assert.throws(()=>own(null,{_id:'a'}),e=>e.status===404);assert.throws(()=>own({owner:'a'},{_id:'b'}),e=>e.status===403);assert.doesNotThrow(()=>own({owner:'a'},{_id:'a'}))});
 test('domain errors retain their HTTP status and actionable message',()=>{assert.throws(()=>ensure(false,409,'Shift full'),e=>e.status===409&&e.message==='Shift full');assert.doesNotThrow(()=>ensure(true,400,'unused'))});
-

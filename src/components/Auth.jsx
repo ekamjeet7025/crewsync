@@ -24,5 +24,3 @@ export default function Auth({ onLogin }) {
     <div className="auth-note"><Icon name="shield"/><span>Your shifts and event data are saved securely.<br/>Organisers manage only their own events.</span></div></div><footer>Every volunteer. Every shift. In sync.</footer></main>
   </div>;
 }
-
-

@@ -45,4 +45,3 @@ After integration tests pass, record their actual results here. Do not mark them
 10. Cancel an event; its shifts must no longer be available.
 11. Verify mobile navigation, sign-out, modal keyboard focus, empty states, and error messages.
 12. Verify public links and seeded credentials in an incognito browser.
-

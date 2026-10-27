@@ -3,8 +3,8 @@
 
 CrewSync is a MERN application for coordinating campus event volunteers. Organisers publish events and shifts; volunteers join duties, request replacements, and help teammates. Organisers track coverage and attendance.
 
-**Author:** Ekamjeet Singh  
-**Project type:** Solo end-term software project  
+**Author:** Ekamjeet Singh
+**Project type:** Solo end-term software project
 **Delivery status:** Source and production build prepared. See [verification status](docs/VERIFICATION.md) for checks and outstanding publishing steps. No public deployment or GitHub URL is claimed until verified.
 
 ## Problem and target users

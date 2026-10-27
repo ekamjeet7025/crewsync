@@ -32,5 +32,3 @@ export function Editor({ type, event, close, save }) {
     <div className="modal-actions"><button type="button" className="button" onClick={close}>Cancel</button><button className="button primary" disabled={busy}>{busy ? 'Saving…' : type === 'event' ? 'Publish event' : 'Create shift'}<Icon name="arrow"/></button></div></form>
   </Modal>;
 }
-
-
