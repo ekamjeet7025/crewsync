@@ -10,3 +10,13 @@ playwright-report/
 artifacts/
 .local-data/
 .npm-cache/
+
+# Private credentials and signing keys
+*.pem
+*.key
+*.p12
+*.pfx
+.npmrc
+.envrc
+credentials*.json
+service-account*.json

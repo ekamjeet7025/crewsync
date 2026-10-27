@@ -23,5 +23,5 @@ export function Field({ label, children }) { return <label className="field"><sp
 
 export function EventArt({ category, index }) {
   const variant = category === 'Technology' ? 1 : category === 'Sports' ? 2 : index % 3;
-  return <div className={`event-art art-${variant}`} aria-hidden="true"><div className="art-grid"/><div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/><div className="art-orbit orbit-three"/><span className="art-word">{variant === 0 ? 'MAKE\nMOMENTS.' : variant === 1 ? 'BUILD\nTOGETHER.' : 'PLAY\nYOUR PART.'}</span><span className="art-star">✳</span><span className="art-caption">THE CREW MAKES IT HAPPEN ↗</span></div>;
+  return <div className={`event-art art-${variant}`} aria-hidden="true"><div className="art-grid"/><div className="art-orbit orbit-one"/><div className="art-orbit orbit-two"/><div className="art-orbit orbit-three"/><span className="art-word">{variant === 0 ? 'MAKE\nMOMENTS.' : variant === 1 ? 'BUILD\nTOGETHER.' : 'PLAY\nYOUR PART.'}</span><span className="art-star"><Icon name={variant === 0 ? 'spark' : variant === 1 ? 'grid' : 'shield'} size={90}/></span><span className="art-caption">CREWSYNC / COMMUNITY IN ACTION</span></div>;
 }
