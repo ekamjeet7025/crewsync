@@ -33,21 +33,6 @@ Additional supporting functionality: account registration/login/logout, search, 
 
 No paid APIs, AI model, payment provider, or external email service is needed.
 
-## Quick start: local demo
-Requires Node.js **22.12 or newer**. Run commands inside the **crew sync** folder.
-
-```powershell
-npm install
-npm run build
-npm run demo
-```
-
-Open **http://127.0.0.1:3100**.
-
-The local demo launches a real single-node MongoDB replica set and saves records in the ignored `.local-data/` directory. On the first run MongoDB Memory Server may download an official MongoDB binary. A cached Windows binary is already available on the development machine. This helper is for local development, not production hosting.
-
-Use Ctrl+C to stop. The next start keeps database records but issues a new signing key, so sign in again.
-
 ### Demo accounts
 For the local demo, all accounts below use **CrewSyncDemo2026!**.
 
